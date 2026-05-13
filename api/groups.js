@@ -25,8 +25,9 @@ class MarathonApiGroupEndpoints {
   }
 
   async update (groupId, data, force) {
-    const params = new URLSearchParams([['force', force]])
-    const { data: result } = await this.client.put(groupId, { json: data }, { params })
+    const params = new URLSearchParams([['force', !!force]])
+    const path = encodeURIComponent(groupId)
+    const { data: result } = await this.client.put(path, data, { params })
     return result
   }
 
